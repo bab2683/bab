@@ -1,4 +1,10 @@
 {
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-prettier",
+    "rxjs-tslint-rules"
+  ],
+
   "rulesDirectory": [
     "node_modules/@nrwl/workspace/src/tslint",
     "node_modules/codelyzer"
@@ -12,7 +18,9 @@
     },
     "forin": true,
     "import-blacklist": [true, "rxjs/Rx"],
+    "interface-name": false,
     "interface-over-type-literal": true,
+    "max-classes-per-file": false,
     "member-access": false,
     "member-ordering": [
       true,
@@ -34,7 +42,6 @@
     "no-empty": false,
     "no-empty-interface": true,
     "no-eval": true,
-    "no-inferrable-types": [true, "ignore-params"],
     "no-misused-new": true,
     "no-non-null-assertion": true,
     "no-shadowed-variable": true,
