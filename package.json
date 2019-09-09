@@ -7,7 +7,8 @@
     "nx": "nx",
     "start": "ng serve -o --port=4300",
     "build": "ng build",
-    "test": "ng test",
+    "test": "ng test -u",
+    "test:cov": "ng test --codeCoverage=true",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
     "affected:apps": "nx affected:apps",
@@ -25,7 +26,8 @@
     "update:check": "ng update",
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "precommit": "lint-staged && npm run test:cov"
   },
   "dependencies": {
     "@angular/animations": "^8.0.0",
@@ -74,7 +76,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm run precommit"
     }
   },
   "lint-staged": {
