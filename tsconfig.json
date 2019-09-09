@@ -9,7 +9,10 @@
     "lib": ["es2017", "dom"],
     "module": "esnext",
     "moduleResolution": "node",
-    "paths": {},
+    "paths": {
+      "@bab/auth": ["libs/auth/src/index.ts"],
+      "@bab/test-utils": ["libs/test-utils/src/index.ts"]
+    },
     "rootDir": ".",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
