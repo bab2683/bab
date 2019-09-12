@@ -1,0 +1,14 @@
+{
+  "name": "@babdev/test-lib",
+  "author": "Braulio Barahona (https://brauliobarahona.com/)",
+  "version": "0.0.1",
+  "description": "test library in order to setup flow to push to npm",
+  "bugs": {
+    "url": "https://github.com/bab2683/bab/issues"
+  },
+  "repository": "github:bab2683/bab",
+  "peerDependencies": {
+    "@angular/common": "^8.1.1",
+    "@angular/core": "^8.1.1"
+  }
+}

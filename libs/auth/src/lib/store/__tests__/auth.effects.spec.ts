@@ -9,7 +9,7 @@ import {
   wrongCredentialsTestError
 } from '../../../../__mocks__';
 
-import { angularFireMock } from '@bab/test-utils';
+import { angularFireMock } from '@babdev/test-utils';
 
 import { AuthErrorsEnum } from '../../auth.enum';
 import {

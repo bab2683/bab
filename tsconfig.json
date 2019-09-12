@@ -10,8 +10,9 @@
     "module": "esnext",
     "moduleResolution": "node",
     "paths": {
-      "@bab/auth": ["libs/auth/src/index.ts"],
-      "@bab/test-utils": ["libs/test-utils/src/index.ts"]
+      "@babdev/auth": ["libs/auth/src/index.ts"],
+      "@babdev/test-utils": ["libs/test-utils/src/index.ts"],
+      "@babdev/test-lib": ["libs/test-lib/src/index.ts"]
     },
     "rootDir": ".",
     "skipDefaultLibCheck": true,

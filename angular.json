@@ -10,7 +10,7 @@
       },
       "root": "apps/bab",
       "sourceRoot": "apps/bab/src",
-      "prefix": "bab",
+      "prefix": "babdev",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -120,7 +120,7 @@
       "projectType": "library",
       "root": "libs/auth",
       "sourceRoot": "libs/auth/src",
-      "prefix": "bab",
+      "prefix": "babdev",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -151,7 +151,7 @@
       "projectType": "library",
       "root": "libs/test-utils",
       "sourceRoot": "libs/test-utils/src",
-      "prefix": "bab",
+      "prefix": "babdev",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -169,6 +169,44 @@
             "jestConfig": "libs/test-utils/jest.config.js",
             "tsConfig": "libs/test-utils/tsconfig.spec.json",
             "setupFile": "libs/test-utils/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "test-lib": {
+      "projectType": "library",
+      "root": "libs/test-lib",
+      "sourceRoot": "libs/test-lib/src",
+      "prefix": "babdev",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/test-lib/tsconfig.lib.json",
+            "project": "libs/test-lib/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/test-lib/tsconfig.lib.json",
+              "libs/test-lib/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/test-lib/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/test-lib/jest.config.js",
+            "tsConfig": "libs/test-lib/tsconfig.spec.json",
+            "setupFile": "libs/test-lib/src/test-setup.ts"
           }
         }
       },

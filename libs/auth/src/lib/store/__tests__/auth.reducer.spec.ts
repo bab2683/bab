@@ -1,4 +1,4 @@
-import { provide } from '@bab/test-utils';
+import { provide } from '@babdev/test-utils';
 import { loggedTestUser } from '../../../../__mocks__';
 
 import { AuthError } from '../../auth.model';
