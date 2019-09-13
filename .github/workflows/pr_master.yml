@@ -1,0 +1,17 @@
+name: PR
+
+on:
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: lint
+        run: echo lint is supposed to happen in here
+
+
