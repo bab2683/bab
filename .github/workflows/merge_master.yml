@@ -8,9 +8,9 @@ on:
 
 jobs:
   build:
+    if: contains(github.event.commits[0].message, '[merge pull request]') == true
 
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v1
     - name: Deploy
