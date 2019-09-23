@@ -31,7 +31,7 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "precommit": "lint-staged && npm run test:cov"
+    "precommit": "lint-staged && npm run affected:test"
   },
   "dependencies": {
     "@angular/animations": "^8.0.0",
