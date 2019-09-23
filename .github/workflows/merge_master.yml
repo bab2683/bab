@@ -17,10 +17,16 @@ jobs:
       run: echo Hello, world!
     - name: commit message
       run: |
-        git show --oneline -s HEAD
+
 
     - name: Deploy
       run: |
-        if [${{contains(github.event.commits[0].message, '[skip-ci]')}} == false]; then
-          echo Deployed here
+        MESSAGE=git show --oneline -s HEAD
+        KEYWORD='skip-ci'
+        if [ ["$MESSAGE" == *"$KEYWORD"] ]
+        then
+          echo Changes are not being deployed
+        else
+          # deploy logic here
+          echo Changes deployed
         fi
