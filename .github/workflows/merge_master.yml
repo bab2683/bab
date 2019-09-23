@@ -17,8 +17,7 @@ jobs:
       run: |
         MESSAGE=$(git show --oneline -s HEAD)
         KEYWORD='skip-ci'
-        if [ ["$MESSAGE" == *"$KEYWORD"] ]
-        then
+        if [[ "$MESSAGE" == *"$KEYWORD"* ]]; then
           echo Changes are not being deployed
         else
           # deploy logic here
