@@ -1,12 +1,19 @@
-name: CI
+name: Push on master
 
-on: [push]
+on:
+  push:
+    if: |
+      contains(github.event.commits[0].message, '[skip-ci]') == false
+
+    branches:
+    - master
+
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v1
     - name: Run a one-line script
