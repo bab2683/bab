@@ -10,16 +10,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v1
     - name: Deploy
       if: contains(github.event.commits[0].message, '[skip-ci]') == false
-      run: |
-        MESSAGE=$(git show --oneline -s HEAD)
-        KEYWORD='skip-ci'
-        if [[ "$MESSAGE" == *"$KEYWORD"* ]]; then
-          echo Changes are not being deployed
-        else
-          # deploy logic here
-          echo Changes deployed
-        fi
+      run: echo Deploy logic here

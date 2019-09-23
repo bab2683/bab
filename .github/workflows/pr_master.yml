@@ -1,4 +1,4 @@
-name: PR Open
+name: PR on master
 
 on:
   pull_request:
@@ -11,7 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: lint
-        run: echo lint is supposed to happen in here
+      - uses: actions/checkout@v1
+      - name: Linter
+        run: lint-staged
+      - name: Tests coverage
+        run: npm run test:cov
 
 

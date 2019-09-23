@@ -7,6 +7,7 @@
     "url": "https://github.com/bab2683/bab/issues"
   },
   "scripts": {
+    "cz": "git-cz",
     "ng": "ng",
     "nx": "nx",
     "start": "ng serve -o --port=4300",
@@ -65,7 +66,9 @@
     "@types/jest": "24.0.9",
     "@types/node": "~8.9.4",
     "codelyzer": "~5.0.1",
+    "commitizen": "^4.0.3",
     "cypress": "3.4.1",
+    "cz-conventional-changelog": "3.0.2",
     "dotenv": "6.2.0",
     "eslint": "6.1.0",
     "husky": "^3.0.5",
@@ -102,5 +105,14 @@
       "git add"
     ]
   },
-  "private": true
+  "private": true,
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog",
+      "scopelist": [
+        "auth",
+        "test-utils"
+      ]
+    }
+  }
 }
