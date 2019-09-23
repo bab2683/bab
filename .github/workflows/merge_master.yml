@@ -17,6 +17,6 @@ jobs:
       run: echo Hello, world!
     - name: Deploy
       run: |
-        if [contains(github.event.commits[0].message, '[skip-ci]') == false]; then
+        if [${{contains(github.event.commits[0].message, '[skip-ci]')}} == false]; then
           echo Deployed here
         fi
