@@ -1,6 +1,10 @@
 {
   "name": "bab",
-  "author": "Braulio Barahona (https://brauliobarahona.com/)",
+  "author": {
+    "email": "barahona.braulio@gmail.com",
+    "name": "Braulio Barahona",
+    "url": "https://brauliobarahona.com/"
+  },
   "version": "0.0.0",
   "license": "MIT",
   "bugs": {
@@ -32,7 +36,8 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "prepush": "nx affected:lint && ng test --codeCoverage=true"
+    "prepush": "nx affected:lint && ng test --codeCoverage=true",
+    "lib-publish": "node ./scripts/publish.js"
   },
   "dependencies": {
     "@angular/animations": "^8.0.0",

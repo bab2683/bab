@@ -13,6 +13,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - name: Install environment
+      if: contains(github.event.commits[0].message, '[skip-ci]') == false
+      run: npm install
+    - name: Set Npm Config
+      if: contains(github.event.commits[0].message, '[skip-ci]') == false
+      env:
+        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      run: npm config set '//registry.npmjs.org/:_authToken' "${NPM_AUTH_TOKEN}"
     - name: Deploy
       if: contains(github.event.commits[0].message, '[skip-ci]') == false
-      run: echo Deploy logic here
+      run: npm run lib-publish
