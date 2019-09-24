@@ -15,3 +15,5 @@ import { AUTH_STATE, AuthEffects, authReducer } from './store';
   ]
 })
 export class AuthModule {}
+
+console.log('here');

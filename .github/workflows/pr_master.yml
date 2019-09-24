@@ -12,8 +12,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+      - name: Install environment
+        run: npm install
       - name: Linter
-        run: lint-staged
+        run: npm run ng lint
       - name: Tests coverage
         run: npm run test:cov
 
