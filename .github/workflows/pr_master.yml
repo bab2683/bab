@@ -18,5 +18,9 @@ jobs:
         run: npm run ng lint
       - name: Tests coverage
         run: npm run test:cov
+      - name: Check env
+        env:
+          NPM_OTP: ${{ secrets.NPM_AUTH_TOKEN }}
+        run: node ./scripts/test.js
 
 
