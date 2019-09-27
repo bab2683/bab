@@ -36,7 +36,7 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "prepush": "nx affected:lint && ng test --codeCoverage=true",
+    "prepush": "nx affected:lint",
     "lib-publish": "node ./scripts/publish.js"
   },
   "dependencies": {
