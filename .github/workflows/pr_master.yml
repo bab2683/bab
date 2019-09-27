@@ -4,19 +4,30 @@ on:
   pull_request:
     branches:
     - master
+    # types: [opened, edited]
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
+
     steps:
       - uses: actions/checkout@v1
-      - name: Install environment
-        run: npm install
-      - name: Linter
-        run: npm run ng lint
-      - name: Tests coverage
-        run: npm run test:cov
+      # - name: Use Node.js ${{ matrix.node-version }}
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: ${{ matrix.node-version }}
+      # - name: Install environment
+      #   run: npm install
+      # - name: Linter
+      #   run: npm run ng lint
+      # - name: Tests coverage
+      #   run: npm run test:cov
+      - name : Check env
+        run: node ./scripts/test.js
 
 
