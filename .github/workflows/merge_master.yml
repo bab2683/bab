@@ -11,19 +11,27 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v1
-    - name : Check env
-      run: node ./scripts/test.js
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
 
-    # - name: Install environment
-    #   if: contains(github.event.commits[0].message, '[skip-ci]') == false
-    #   run: npm install
-    # - name: Set Npm Config
-    #   if: contains(github.event.commits[0].message, '[skip-ci]') == false
-    #   env:
-    #     NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-    #   run: npm config set '//registry.npmjs.org/:_authToken' "${NPM_AUTH_TOKEN}"
-    # - name: Deploy
-    #   if: contains(github.event.commits[0].message, '[skip-ci]') == false
-    #   run: npm run lib-publish
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        if: github.event.merged == true && contains(github.event.commits[0].message, '[skip-ci]') == false
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install environment
+        if: github.event.merged == true && contains(github.event.commits[0].message, '[skip-ci]') == false
+        run: npm install
+      - name: Set Npm Config
+        if: github.event.merged == true && contains(github.event.commits[0].message, '[skip-ci]') == false
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        run: npm config set '//registry.npmjs.org/:_authToken' "${NPM_AUTH_TOKEN}"
+      - name: Deploy
+        if: github.event.merged == true && contains(github.event.commits[0].message, '[skip-ci]') == false
+        env:
+          CI: true
+        run: npm run lib-publish
