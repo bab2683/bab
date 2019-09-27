@@ -5,5 +5,3 @@ import { NgModule } from '@angular/core';
   imports: [CommonModule]
 })
 export class TestLibModule {}
-
-console.log("it's me, the Test Lib");
