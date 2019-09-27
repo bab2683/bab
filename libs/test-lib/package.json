@@ -1,11 +1,17 @@
 {
   "name": "@babdev/test-lib",
-  "author": "Braulio Barahona (https://brauliobarahona.com/)",
-  "version": "0.0.1",
+  "author": {
+    "email": "barahona.braulio@gmail.com",
+    "name": "Braulio Barahona",
+    "url": "https://brauliobarahona.com/"
+  },
+  "version": "0.0.0",
   "description": "test library in order to setup flow to push to npm",
+  "homepage": "https://github.com/bab2683/bab/libs/test-lib/",
   "bugs": {
     "url": "https://github.com/bab2683/bab/issues"
   },
+  "license": "MIT",
   "repository": "github:bab2683/bab",
   "peerDependencies": {
     "@angular/common": "^8.1.1",
