@@ -22,10 +22,10 @@ function deployLib(name, type) {
   console.log('creating tar file');
   const tarFileName = `${name}.tar.gz`;
 
-  execSync(`(cd dist/libs/${name} && tar -cvzf ${tarFileName} ../../../tar/)`);
+  execSync(`tar -cvzf ${tarFileName} dist/libs/${name}`);
   console.log('tar file created');
   console.log('publishing');
-  execSync(`npm publish tar/${tarFileName}`);
+  execSync(`npm publish ${tarFileName}`);
   console.log(`${name} published`);
 }
 
