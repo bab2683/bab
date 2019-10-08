@@ -27,7 +27,9 @@ if (type) {
 
     execSync(`git tag -a ${tag}`);
 
-    execSync('git add -A && git push && git push --tags');
+    execSync(
+      'git add -A && git push origin HEAD:master && git push origin HEAD:master --tags'
+    );
     console.log('tags pushed to repo');
   } else {
     console.log('no deployable libs');
