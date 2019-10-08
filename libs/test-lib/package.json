@@ -5,7 +5,7 @@
     "name": "Braulio Barahona",
     "url": "https://brauliobarahona.com/"
   },
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "test library in order to setup flow to push to npm",
   "homepage": "https://github.com/bab2683/bab/libs/test-lib/",
   "bugs": {
