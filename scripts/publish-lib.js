@@ -21,17 +21,11 @@ function deployLib(name, type) {
   console.log(`${name}: library built`);
   console.log('creating tar file');
   const tarFileName = `${name}.tar.gz`;
-
   execSync(`(cd dist/libs/${name} && tar -cvzf ../../../${tarFileName} ./)`);
   console.log('tar file created');
   console.log('verify files');
   const files = execSync(`tar -ztvf ${tarFileName}`).toString();
   console.log('files', files);
-
-  const workspace = execSync('ls').toString();
-
-  console.log('workspace', workspace);
-
   console.log('publishing');
   execSync(`npm publish ${tarFileName}`);
   console.log(`${name} published`);
