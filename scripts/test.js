@@ -1,1 +1,3 @@
-console.log('environment', process.env);
+const { getDeployableLibs } = require('./affected');
+
+console.log(getDeployableLibs());
