@@ -22,7 +22,7 @@ function deployLib(name, type) {
   console.log('creating tar file');
   const tarFileName = `${name}.tar.gz`;
 
-  execSync(`tar -cvzf ${tarFileName} dist/libs/${name}`);
+  execSync(`(cd dist/libs/${name} && tar -cvzf ../../../${tarFileName} ./)`);
   console.log('tar file created');
   console.log('verify files');
   const files = execSync(`tar -ztvf ${tarFileName}`).toString();
