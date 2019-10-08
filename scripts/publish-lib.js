@@ -25,7 +25,13 @@ function deployLib(name, type) {
   execSync(`tar -cvzf ${tarFileName} dist/libs/${name}`);
   console.log('tar file created');
   console.log('verify files');
-  execSync(`tar -ztvf ${tarFileName}`);
+  const files = execSync(`tar -ztvf ${tarFileName}`);
+  console.log('files', files);
+
+  const workspace = execSync('ls');
+
+  console.log('workspace', workspace);
+
   console.log('publishing');
   execSync(`npm publish ${tarFileName}`);
   console.log(`${name} published`);
