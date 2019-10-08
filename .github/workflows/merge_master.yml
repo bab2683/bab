@@ -24,7 +24,7 @@ jobs:
         if: github.event.pull_request.merged == true && contains(github.event.commits[0].message, '[skip-ci]') == false
         uses: actions/checkout@master
         with:
-          ref: ${{github.head_ref}}
+          ref: master
       - name: Use Node.js ${{ matrix.node-version }}
         if: github.event.pull_request.merged == true && contains(github.event.commits[0].message, '[skip-ci]') == false
         uses: actions/setup-node@master
@@ -33,6 +33,11 @@ jobs:
       - name: Install environment
         if: github.event.pull_request.merged == true && contains(github.event.commits[0].message, '[skip-ci]') == false
         run: npm install
+      - name: Login to github
+        if: github.event.pull_request.merged == true && contains(github.event.commits[0].message, '[skip-ci]') == false
+        run: |
+          git config user.email "barahona.braulio@gmail.com"
+          git comnfig user.name "bab CI"
       - name: Deploy
         if: github.event.pull_request.merged == true && contains(github.event.commits[0].message, '[skip-ci]') == false
         env:
