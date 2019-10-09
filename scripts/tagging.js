@@ -1,5 +1,6 @@
 const { execSync } = require('child_process');
 const { getDeployableLibs } = require('./affected');
+const octokat = require('octokat');
 
 /**
  * @param {Array<string>} libs
@@ -62,14 +63,19 @@ function createMessage(libs) {
  * @description saves version and changes and saves it to the repo
  */
 function commitAndSaveChanges() {
-  console.log('creating tag');
-
   const tag = getTagForRelease(getDeployableLibs());
+  const files = execSync('git status').toString();
+  console.log('changed files', files);
 
-  execSync(`git tag -a ${tag}`);
+  const octo = new octokat({
+    token: process.env.GITHUB_AUTH_TOKEN
+  });
 
-  execSync('git add -A && git push && git push --tags');
-  console.log('tags pushed to repo');
+  const context = process.env.GITHUB_CONTEXT;
+
+  const repo = octo.repos(context.actor, 'bab');
+
+  console.log('repo', repo);
 }
 
 commitAndSaveChanges();
