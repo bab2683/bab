@@ -1,3 +1,2 @@
-const { getDeployableLibs } = require('./affected');
-
-console.log(getDeployableLibs());
+const branch = process.argv.splice(2)[0];
+console.log('branch', branch);
