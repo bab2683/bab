@@ -37,7 +37,7 @@ jobs:
         if: github.event.pull_request.merged == true && contains(github.event.commits[0].message, '[skip-ci]') == false
         run: |
           git config user.email "barahona.braulio@gmail.com"
-          git config user.name "bab CI"
+          git config user.name "bab2683"
           git checkout master
       - name: Deploy
         if: github.event.pull_request.merged == true && contains(github.event.commits[0].message, '[skip-ci]') == false
