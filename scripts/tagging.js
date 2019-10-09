@@ -1,4 +1,5 @@
 const { execSync } = require('child_process');
+const { getDeployableLibs } = require('./affected');
 
 /**
  * @param {Array<string>} libs
@@ -57,6 +58,18 @@ function createMessage(libs) {
   return `affected libs: ${libs.join()}`;
 }
 
-module.exports = {
-  getTagForRelease
-};
+/**
+ * @description saves version and changes and saves it to the repo
+ */
+function commitAndSaveChanges() {
+  console.log('creating tag');
+
+  const tag = getTagForRelease(getDeployableLibs());
+
+  execSync(`git tag -a ${tag}`);
+
+  execSync('git add -A && git push && git push --tags');
+  console.log('tags pushed to repo');
+}
+
+commitAndSaveChanges();

@@ -2,12 +2,11 @@ const { execSync } = require('child_process');
 const { readdirSync } = require('fs');
 
 /**
- *
  * @returns {Array<string>} Affected libraries
  */
 function getAffectedLibs() {
   const result = execSync(
-    'npm run affected:libs -- --base=remotes/origin/master~1'
+    `npm run affected:libs -- --base=remotes/origin/master~1`
   ).toString();
   const data = result.match(/- (.+)/gm);
   return data
@@ -18,7 +17,6 @@ function getAffectedLibs() {
 }
 
 /**
- *
  * @return {Array<string>} Deployable libraries
  */
 function getDeployableLibs() {
