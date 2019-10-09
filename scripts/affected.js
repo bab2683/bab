@@ -2,12 +2,12 @@ const { execSync } = require('child_process');
 const { readdirSync } = require('fs');
 
 /**
- *
+ * @param {string} branch
  * @returns {Array<string>} Affected libraries
  */
-function getAffectedLibs() {
+function getAffectedLibs(branch) {
   const result = execSync(
-    'npm run affected:libs -- --base=remotes/origin/master~1'
+    `npm run affected:libs -- --base=remotes/origin/master --head=${branch}`
   ).toString();
   const data = result.match(/- (.+)/gm);
   return data
@@ -18,11 +18,11 @@ function getAffectedLibs() {
 }
 
 /**
- *
+ * @param {string} branch
  * @return {Array<string>} Deployable libraries
  */
-function getDeployableLibs() {
-  const libs = getAffectedLibs();
+function getDeployableLibs(branch) {
+  const libs = getAffectedLibs(branch);
   return libs.filter(lib => {
     const files = readdirSync(`./libs/${lib}`);
     return files.indexOf('package.json') > -1;
