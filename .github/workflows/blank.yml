@@ -25,4 +25,4 @@ jobs:
         git config user.email "barahona.braulio@gmail.com"
         git commit -m "test commit"
         git remote -v
-        git push http.extraheader="AUTHORIZATION: token $GITHUB_AUTH_TOKEN"
+        git http.extraheader="AUTHORIZATION: token $GITHUB_AUTH_TOKEN" push
