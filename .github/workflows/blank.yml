@@ -24,5 +24,6 @@ jobs:
         git config user.name "bab2683"
         git config user.email "barahona.braulio@gmail.com"
         git commit -m "test commit"
-        git remote -v
+        git config --get-all http.https://github.com/bab2683/bab.extraheader
+        git config --get-all http.proxy
         git http.extraheader="AUTHORIZATION: token $GITHUB_AUTH_TOKEN" push
