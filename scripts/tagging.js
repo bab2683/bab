@@ -1,7 +1,5 @@
 const { execSync } = require('child_process');
-const { readFileSync } = require('fs');
 const { getDeployableLibs } = require('./affected');
-const Commit = require('./commit');
 
 /**
  * @param {Array<string>} libs

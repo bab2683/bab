@@ -30,15 +30,16 @@ jobs:
         uses: actions/setup-node@master
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install environment
-        if: github.event.pull_request.merged == true && contains(github.event.commits[0].message, '[skip-ci]') == false
-        run: npm install
       - name: Login to github
         if: github.event.pull_request.merged == true && contains(github.event.commits[0].message, '[skip-ci]') == false
+        env:
+          CI: true
+          GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_AUTH_TOKEN }}
         run: |
-          git config user.email "barahona.braulio@gmail.com"
-          git config user.name "bab2683"
           git checkout master
+          git config user.name "bab2683"
+          git config user.email "barahona.braulio@gmail.com"
+          git remote set-url origin https://bab2683:$GITHUB_AUTH_TOKEN@github.com/bab2683/bab.git
       - name: Deploy
         if: github.event.pull_request.merged == true && contains(github.event.commits[0].message, '[skip-ci]') == false
         env:
@@ -51,10 +52,5 @@ jobs:
         if: github.event.pull_request.merged == true && contains(github.event.commits[0].message, '[skip-ci]') == false
         env:
           CI: true
-          GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_AUTH_TOKEN }}
         run: |
-          git checkout master
-          git config user.name "bab2683"
-          git config user.email "barahona.braulio@gmail.com"
-          git remote set-url origin https://bab2683:$GITHUB_AUTH_TOKEN@github.com/bab2683/bab.git
           npm run save-changes
