@@ -61,48 +61,15 @@ function createMessage(libs) {
 }
 
 /**
- * @returns {Array<{content: string, path:string}>} changed files
- */
-function getChangedFiles() {
-  const status = execSync('git status --porcelain').toString();
-  return status.match(/(?:M|MM)\s+(.+)$/gm).map(result => {
-    const path = result.replace(/(M\s+|MM\s+)/gm, '');
-    return {
-      content: getFileContent(path),
-      path
-    };
-  });
-}
-
-/**
- *
- * @param {string} path
- * @returns {string} content of file
- */
-function getFileContent(path) {
-  return readFileSync(path, 'utf8');
-}
-
-/**
  * @description saves version and changes and saves it to the repo
  */
 function commitAndSaveChanges() {
   const tag = getTagForRelease(getDeployableLibs());
-  const files = getChangedFiles();
 
-  console.log('files', files);
-  const context = process.env.GITHUB_CONTEXT;
+  execSync(`git tag -a ${tag}`);
 
-  const commitCreator = new Commit({
-    repo: 'bab',
-    token: process.env.GITHUB_AUTH_TOKEN,
-    username: context.actor
-  });
-
-  commitCreator
-    .create({ branchName: 'master', files, message: tag })
-    .then(result => console.log('result', result))
-    .catch(err => console.log('error', err));
+  execSync('git add -A && git push && git push --tags');
+  console.log('tags pushed to repo');
 }
 
 commitAndSaveChanges();
