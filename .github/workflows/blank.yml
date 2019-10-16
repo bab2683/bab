@@ -26,4 +26,4 @@ jobs:
         git commit -m "test commit"
         git config --get-all http.https://github.com/bab2683/bab.extraheader
         git config --get-all http.proxy
-        git http.extraheader="AUTHORIZATION: token $GITHUB_AUTH_TOKEN" push
+        node ./scripts/test.js
