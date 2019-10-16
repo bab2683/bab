@@ -17,16 +17,12 @@ jobs:
     - name: Run a multi-line script
       env:
         GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_AUTH_TOKEN }}
+        CI: true
       run: |
-        git switch master
+        git checkout master
         touch test.txt
         git add .
         git config user.name "bab2683"
         git config user.email "barahona.braulio@gmail.com"
         git commit -m "test commit"
-        echo Here 1
-        git config --get-all http.https://github.com/bab2683/bab.extraheader
-        echo Here 2
-        git config --get-all http.proxy
-        echo Here 3
-        node ./scripts/test.js
+        git http.extraheader="AUTHORIZATION: token $GITHUB_AUTH_TOKEN" push
