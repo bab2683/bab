@@ -25,4 +25,5 @@ jobs:
         git config user.name "bab2683"
         git config user.email "barahona.braulio@gmail.com"
         git commit -m "test commit"
-        git http.extraheader="AUTHORIZATION: token $GITHUB_AUTH_TOKEN" push
+        git remote set-url origin https://bab2683:<$GITHUB_AUTH_TOKEN>@github.com/bab2683/bab.git
+        git push
