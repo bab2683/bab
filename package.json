@@ -38,7 +38,6 @@
     "help": "nx help",
     "prepush": "nx affected:lint",
     "lib-publish": "node ./scripts/publish.js",
-    "save-changes": "node ./scripts/tagging.js",
     "testing": "node ./scripts/test.js"
   },
   "dependencies": {

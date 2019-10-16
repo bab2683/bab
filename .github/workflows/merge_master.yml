@@ -51,9 +51,3 @@ jobs:
         run: |
           npm config set //registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN
           npm run lib-publish
-      - name: Save version changes
-        if: github.event.pull_request.merged == true && contains(github.event.commits[0].message, '[skip-ci]') == false
-        env:
-          CI: true
-        run: |
-          npm run save-changes

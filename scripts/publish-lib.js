@@ -30,6 +30,8 @@ function deployLib(name, type) {
 
   execSync(`npm publish ${tarFileName} --access public`);
   console.log(`${name} published`);
+
+  return `${name}(${newVersion})`;
 }
 
 module.exports = { deployLib };
