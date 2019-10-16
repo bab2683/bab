@@ -1,25 +1,22 @@
 const { execSync } = require('child_process');
-const { getDeployableLibs } = require('./affected');
 
 /**
- * @param {Array<string>} libs
  * @returns {string} New tag for release
  */
-function getTagForRelease(libs) {
+function getReleaseVersion() {
   const lastTag = execSync('git tag | sort -V | tail -1').toString();
 
   if (lastTag) {
-    return createReleaseTag(lastTag, libs);
+    return createReleaseTag(lastTag);
   }
-  return createFirstTag(libs);
+  return createFirstTag();
 }
 
 /**
  * @param {string} lastTag
- * @param {Array<string>} libs
  * @returns {string} New tag for release
  */
-function createReleaseTag(lastTag, libs) {
+function createReleaseTag(lastTag) {
   const splitted = lastTag.replace('v', '').split('.');
   const major = Number(splitted[0]),
     minor = Number(splitted[1]),
@@ -37,37 +34,33 @@ function createReleaseTag(lastTag, libs) {
     newVersion = `${major}.${minor}.${patch + 1}`;
   }
 
-  return `v${newVersion}-release -m "Publish ${newVersion}, ${createMessage(
-    libs
-  )}"`;
+  return newVersion;
 }
 
 /**
- * @param {Array<string>} libs
  * @returns {string} First tag
  */
-function createFirstTag(libs) {
-  return `v1.0.0-release -m "First publish, ${createMessage(libs)}"`;
-}
-
-/**
- * @param {Array<string>} libs
- * @returns {string} First tag
- */
-function createMessage(libs) {
-  return `affected libs: ${libs.join()}`;
+function createFirstTag() {
+  return '1.0.0';
 }
 
 /**
  * @description saves version and changes and saves it to the repo
  */
-function commitAndSaveChanges() {
-  const tag = getTagForRelease(getDeployableLibs());
+function commitAndSaveChanges(message) {
+  const releaseVersion = getReleaseVersion();
 
-  execSync(`git tag -a ${tag}`);
-
-  execSync('git add -A && git push && git push --tags');
+  execSync(`git tag -a v${releaseVersion}-release`);
+  console.log('status:');
+  execSync('git status');
+  execSync('git add .');
+  execSync(
+    `git commit -m "chore(release):${releaseVersion}, libs versions: ${message}"`
+  );
+  execSync('git push --follow-tags');
   console.log('tags pushed to repo');
 }
 
-commitAndSaveChanges();
+module.exports = {
+  commitAndSaveChanges
+};
