@@ -17,7 +17,7 @@ function getReleaseVersion() {
  * @returns {string} New tag for release
  */
 function createReleaseTag(lastTag) {
-  const splitted = lastTag.replace('v', '').split('.');
+  const splitted = lastTag.replace(/\D/g, '').split('');
   const major = Number(splitted[0]),
     minor = Number(splitted[1]),
     patch = Number(splitted[2]);
@@ -50,7 +50,9 @@ function createFirstTag() {
 function commitAndSaveChanges(message) {
   const releaseVersion = getReleaseVersion();
 
-  execSync(`git tag -a v${releaseVersion}-release`);
+  execSync(
+    `git tag -a v${releaseVersion}-release -m "Release ${releaseVersion}"`
+  );
   console.log('status:');
   execSync('git status');
   execSync('git add .');
