@@ -24,6 +24,9 @@ jobs:
         git config user.name "bab2683"
         git config user.email "barahona.braulio@gmail.com"
         git commit -m "test commit"
+        echo Here 1
         git config --get-all http.https://github.com/bab2683/bab.extraheader
+        echo Here 2
         git config --get-all http.proxy
+        echo Here 3
         node ./scripts/test.js
