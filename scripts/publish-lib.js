@@ -28,7 +28,7 @@ function deployLib(name, type) {
   console.log('files', files);
   console.log('publishing');
 
-  //execSync(`npm publish ${tarFileName} --access public`);
+  execSync(`npm publish ${tarFileName} --access public`);
   console.log(`${name} published`);
 }
 
